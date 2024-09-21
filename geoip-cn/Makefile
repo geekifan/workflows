@@ -8,7 +8,7 @@ cn: dedup
 	cat ipip.txt chunzhen.txt | ./dedup > CN.txt
 	rm -f ipip.txt chunzhen.txt
 
-rsc: CN
+rsc: cn
 	/bin/sh gen-rsc.sh
 
 clean:
