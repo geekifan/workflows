@@ -13,12 +13,12 @@ raw: download
 adguardhome-public: raw
 	SERVER=114.114.114.114
 	echo -e "https://1.1.1.1/dns-query\nhttps://1.0.0.1/dns-query\nhttps://8.8.8.8/dns-query\nhttps://8.8.4.4/dns-query\n" > upstream-public.conf
-	cat accelerated-domains.china.raw.txt google.china.raw.txt apple.china.raw.txt | sed -e "s/^/\[\/&/g" | sed -e "s/$/&\/\]$(SERVER)/g" >> upstream-public.conf
+	cat accelerated-domains.china.raw.txt google.china.raw.txt apple.china.raw.txt | sed 's/^/[\//; s/$$/\/\]$(SERVER)/' >> upstream-public.conf
 
 adguardhome-campus: raw
 	SERVER=210.28.129.251
 	echo -e "https://1.1.1.1/dns-query\nhttps://1.0.0.1/dns-query\nhttps://8.8.8.8/dns-query\nhttps://8.8.4.4/dns-query\n" > upstream-campus.conf
-	cat accelerated-domains.china.raw.txt google.china.raw.txt apple.china.raw.txt | sed -e "s/^/\[\/&/g" | sed -e "s/$/&\/\]$(SERVER)/g" >> upstream-campus.conf
+	cat accelerated-domains.china.raw.txt google.china.raw.txt apple.china.raw.txt | sed 's/^/[\//; s/$$/\/\]$(SERVER)/' >> upstream-campus.conf
 
 clean:
 	rm -f {accelerated-domains,google,apple}.china.conf {accelerated-domains,google,apple}.china.raw.txt upstream-*.conf
