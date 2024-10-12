@@ -26,10 +26,8 @@ jobs:
       run: |
         git branch -D release || true
         git checkout --orphan release
-        git add geoip-cn/CN.txt
-        git add geoip-cn/update-geoip.rsc
-        git add adguardhome/upstream-public.conf
-        git add adguardhome/upstream-campus.conf
+        git add geoip-cn/*
+        git add adguardhome/*
         git config --local user.name "github-actions[bot]"
         git config --local user.email ""
         git commit -m "built on $(date)"
