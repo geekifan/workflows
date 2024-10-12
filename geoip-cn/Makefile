@@ -11,5 +11,8 @@ cn: dedup
 rsc: cn
 	/bin/sh gen-rsc.sh
 
+quan: cn
+	cat CN.txt | sed 's/^/ip-cidr,/; s/$$/\/,CN/' > CN.list
+
 clean:
 	rm -f dedup *.txt *.rsc
