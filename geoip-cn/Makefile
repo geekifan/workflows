@@ -1,4 +1,4 @@
-all: cn rsc
+all: cn rsc quan
 
 dedup: dedup.c
 
