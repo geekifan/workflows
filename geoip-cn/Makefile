@@ -1,0 +1,18 @@
+all: cn rsc quan
+
+dedup: dedup.c
+
+cn: dedup
+	curl -L -o ipip.txt "https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt"
+	curl -L -o chunzhen.txt "https://raw.githubusercontent.com/metowolf/iplist/master/data/country/CN.txt"
+	cat ipip.txt chunzhen.txt | ./dedup > CN.txt
+	rm -f ipip.txt chunzhen.txt
+
+rsc: cn
+	/bin/sh gen-rsc.sh
+
+quan: cn
+	cat CN.txt | sed 's/^/ip-cidr,/; s/$$/,CN/' > CN.list
+
+clean:
+	rm -f dedup *.txt *.rsc
